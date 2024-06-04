@@ -8,7 +8,7 @@ router.route("/create").post(createFoodController)
 router.route("/getall").get(getAllFoodController)
 router.route("/getsingle/:id").get(getSingleFoodController)
 router.route("/getbyres/:id").get(getFoodsByRestaurant)
-router.route("/update/:foodID").put(updateFoodController)
+router.route("/update/:foodId").put(updateFoodController)
 router.route("/delete/:id").delete(deleteFoodController)
 
 ////place order

@@ -57,7 +57,7 @@ const registerController=asyncHandler(async(req,res)=>{
    
 
    
-    const {userName,email,password,address,phone,usertype,answer}=req.body
+    const {userName,email,password,address,phone,usertype,answer,profile}=req.body
    
 
     if([userName,email,password,address,phone,usertype,answer].some((value)=>value?.trim()==="")){
@@ -79,6 +79,7 @@ const registerController=asyncHandler(async(req,res)=>{
        phone,
        usertype,
        answer,
+       profile
 
 
     })
@@ -107,17 +108,21 @@ const loginController=asyncHandler(async(req,res)=>{
     //find the logged-in-user and select  except password and refresh token
     /// set in the response of cookie of refresh token and access token and send the res of logged in user
 
-const  {userName,email,password}=req.body
+   const  {userName,email, password}=req.body
 
 
-
-if([userName,email,password].some((value)=>value.trim()==="")){
+   console.log(userName)
+   
+if([userName,email,password].some((value)=>value?.trim()==="")){
     throw new ApiError(400,"All fields are necessary while log in")
 }
 
 const user=await User.findOne({
     $or:[{userName},{email}]
 })
+
+
+
 if(!user){
     throw new ApiError(404,"User does not exist")
 }

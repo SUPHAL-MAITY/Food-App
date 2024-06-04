@@ -5,7 +5,7 @@ import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 const router=Router()
 
-router.route("/id").get(getUserController)
+router.route("/getuser").get(getUserController)
 router.route("/update").put(verifyJWT,updateUserController)
 router.route("/passwordupdate").put(updatePasswordController)
 router.route("/forgotpassword").put(forgotPasswordController)

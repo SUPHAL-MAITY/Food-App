@@ -33,6 +33,10 @@ const userSchema=new Schema({
         default: "client",
         enum: ["client", "admin", "vendor", "driver"],
       },
+      role:{
+        type:Number,
+        default:0,
+      },
     profile: {
         type: String,
         default:

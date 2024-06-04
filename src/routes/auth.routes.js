@@ -6,8 +6,9 @@ import  {verifyJWT}  from "../middlewares/auth.middleware.js";
 const router=Router()
 
 router.route("/register").post(registerController)
-router.route("/login").get(loginController)
+router.route("/login").post(loginController)
 router.route("/logout").post(verifyJWT,logOutController)
+
 
 
 

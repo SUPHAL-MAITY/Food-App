@@ -73,7 +73,7 @@ const deleteRestaurantController=asyncHandler(async(req,res)=>{
     }
     await Restaurant.findByIdAndDelete({_id:id})
 
-    res.status(200).json(new ApiResponse(200,"restaurant deleted successfully"))
+    res.status(200).json(new ApiResponse(200,{},"restaurant deleted successfully"))
 
 })
 

@@ -76,10 +76,10 @@ const getFoodsByRestaurant=asyncHandler(async(req,res)=>{
 })
 
 const updateFoodController=asyncHandler(async(req,res)=>{
-    const {foodID}=req.params
+    const {foodId}=req.params
     const {title,description,price,imageUrl,foodTags,catgeory,code,isAvailabe,restaurant,rating,ratingCount}=req.body
 
-    await Foods.findByIdAndUpdate(foodID,{title,description,price,imageUrl,foodTags,catgeory,code,isAvailabe,restaurant,rating,ratingCount},{new:true})
+    await Foods.findByIdAndUpdate(foodId,{title,description,price,imageUrl,foodTags,catgeory,code,isAvailabe,restaurant,rating,ratingCount},{new:true})
     
 
     return res.status(200).json(new ApiResponse(200,{},"Foods are updated successfully"))
@@ -124,7 +124,7 @@ const foodOrderController=asyncHandler(async(req,res)=>{
    const newOrder=new Orders({
      foods:cart,
      payment:total,
-     buyer:req.body.id
+     buyer:req.user._id
    } )
 
 

@@ -11,12 +11,12 @@ const getUserController=asyncHandler(async(req,res)=>{
     ///send response
    
 
-    const {id}=req.body
-    if(!id){
+    const {_id}=req.user
+    if(!_id){
         throw new ApiError(400,"ID is required")
     }
 
-    const user=await User.findById({_id:id})
+    const user=await User.findById(_id)
     if(!user){
         throw new ApiError(400,"User not found while trying to get user")
     }
@@ -38,7 +38,7 @@ const updateUserController=asyncHandler(async(req,res)=>{
     ///findByIdAndUpdate  (use middleware to get the req.user)
     ///send res
     const {userName,address,usertype}=req.body
-    console.log(usertype)
+    
 
     if([userName,address,usertype].some((value)=>value.trim()==="")){
         throw new ApiError(400,"All fields are necessary for updating the user")
@@ -69,16 +69,16 @@ const updatePasswordController=asyncHandler(async(req,res)=>{
     ///hash the new password
     ///save the hashed  password in db 
     ///send the res 
-    
-  const {id,oldPassword,newPassword}= req.body
-  if(!id || !oldPassword || !newPassword){
+  const {_id }=req.user
+  const {oldPassword,newPassword}= req.body
+  if(!_id || !oldPassword || !newPassword){
     throw new ApiError(400,"id ,Old password and new password is necessary")
 
   }
 
   
 
-  const user=await User.findById({_id:id})
+  const user=await User.findById(_id)
   if(!user){
     throw new ApiError(400,"User is not found ")
   }
