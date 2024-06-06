@@ -25,7 +25,7 @@ function Navbar() {
         </Link>
       </li>
       <li className="p-3 xl:p-6">
-        <Link to>
+        <Link to="/add-restaurant">
           <span>Add restaurant</span>
         </Link>
       </li>

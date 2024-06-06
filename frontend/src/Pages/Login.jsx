@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react' 
 import axios from "axios"
 import { Link, useNavigate } from 'react-router-dom'
+import useAuth from '../context/Auth.jsx'
 
 const Login = () => {
 
@@ -11,17 +12,27 @@ const Login = () => {
   const navigate=useNavigate()
 
 
+  const {auth,AuthSet}=useAuth()
+
+
 
   const handleSubmit=async(e)=>{
     e.preventDefault()
   
   try {
     
-    const res= await axios.post(`${import.meta.env.VITE_API}/api/user/login`,{userName,email,password})
-    if(res){
+    const {data}= await axios.post(`${import.meta.env.VITE_API}/api/user/login`,{userName,email,password})
+    console.log(data)
+    if(data){
       alert("User logged in  successfully")
     }
-    navigate("/home")
+    console.log("user")
+    console.log(data?.data.user.userName)
+    console.log(data.data.accessToken)
+
+    AuthSet( data?.data.user.userName,data.data.accessToken)
+    console.log(auth)
+    navigate("/details")
     
     
   } catch (error) {

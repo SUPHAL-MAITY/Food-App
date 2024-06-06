@@ -1,12 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../components/Layout/Layout'
-import SearchInput from '../components/Layout/SearchInput'
+import SearchInput from '../components/Layout/SearchInput.jsx'
+import CategoryCard from '../components/Layout/CategoryCard.jsx'
+import axios from 'axios'
+import { useState } from 'react'
 
 
 function Home() {
+
+  const [categories,setCategories]=useState([])
+
+
+ useEffect(()=>{
+  getCategories()
+
+ },[setCategories])
+
+const getCategories=async()=>{
+  try {
+    const {data}= await axios.get(`${import.meta.env.VITE_API}/api/category/getall`)
+    setCategories(data.data)
+   
+  } catch (error) {
+    console.log(error)
+    
+  }
+
+}
+
+
   return (
    
-
+<>
 
   <div className="bg-center opacity-90 h-dvh bg-no-repeat bg-[url('https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png')] " >
     
@@ -22,7 +47,23 @@ function Home() {
    
 
   </div>
-    
+
+  <div className="grid grid-cols-4 gap-4">
+    {
+      categories.map((c)=>(
+        <div key={c._id}><CategoryCard  id={c._id} title={c.title} imageUrl={c.imageUrl}   /></div>
+
+      ))
+
+    }
+  
+  
+  
+</div>
+
+  
+  
+  </> 
   
       
    
