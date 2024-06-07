@@ -21,6 +21,7 @@ import ForgotPwd from './Pages/ForgotPwd.jsx';
 import { AuthProvider } from './context/Auth.jsx';
 import UserDetails from './Pages/UserDetails.jsx';
 import AddRestro from './components/Layout/AddRestro.jsx';
+import PageNotFound from './components/Layout/PageNotFound.jsx';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
 
   const router=createBrowserRouter(
     createRoutesFromElements(
+      <>
       <Route path='/'  element={<Layout/>} >
              <Route path='login'  element={<Login/>} />
              <Route path='home'  element={<Home/>} />
@@ -41,8 +43,16 @@ function App() {
              <Route path='forgot-password'  element={<ForgotPwd />} />
              <Route path='details'  element={<UserDetails />} />
              <Route path='add-restaurant'  element={<AddRestro />} />
+             <Route path='*' element={<PageNotFound/>}/>
+
 
       </Route>
+
+
+      
+
+   </>
+
     )
   
   )
