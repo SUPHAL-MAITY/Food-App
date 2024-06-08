@@ -49,7 +49,7 @@ function Navbar() {
   
   <nav className="header-links contents font-semibold text-base lg:text-lg">
     <ul className="flex items-center ml-4 xl:ml-8 mr-auto">
-      <li className="p-3 xl:p-6 active">
+      <li className="font-serif p-3 xl:p-6 active">
         <Link to>
           <span>Get the App</span>
         </Link>
@@ -59,17 +59,21 @@ function Navbar() {
       <div  >
 
       <ul className='flex flex-row'>
-      <li className="p-3 xl:p-6">
+      <li className="font-serif p-3 xl:p-6">
         <Link to>
           <span>Investor Relation</span>
         </Link>
       </li>
       <li className="p-3 xl:p-6">
+      {   
+        auth?.token && 
         <Link to="/add-restaurant">
           <span>Add restaurant</span>
         </Link>
+      }
+        
       </li>
-      <li className="p-3 xl:p-6">
+      <li className="font-serif p-3 xl:p-6">
         {
            !auth.token ? ( 
           <Link  to="/login">
@@ -84,16 +88,31 @@ function Navbar() {
         }
        
       </li>
-      <li className="p-3 xl:p-6">
-        <Link to="/signup">
-          <span>Sign Up</span>
-        </Link>
+      <li className=" font-serif p-3 xl:p-6">
+        { !auth?.token && 
+        (<Link to="/signup">
+        <span>Sign Up</span>
+      </Link>)
+
+        }
+
+      
+        
       </li>
-      <li className="p-3 xl:p-6">
+      <li className="font-serif p-3 xl:p-6">
         <Link to="/home">
           <span>Home</span>
         </Link>
       </li>
+
+      {auth?.user &&
+          <div  class="m-3 relative inline-flex items-center justify-center w-8 h-8 overflow-hidden bg-slate-300 rounded-full dark:bg-gray-600">
+          <span  class="font-medium text-gray-600 dark:text-gray-300">{auth?.user?.charAt(0).toUpperCase()}</span>
+        </div>
+
+      }
+
+      
       
     </ul>
 
