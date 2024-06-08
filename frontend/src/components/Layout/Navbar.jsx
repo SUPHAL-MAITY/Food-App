@@ -1,7 +1,47 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import useAuth from '../../context/Auth'
+import axios from "axios"
 
 function Navbar() {
+
+ const {auth,AuthSet}=useAuth()
+ const navigate=useNavigate()
+
+
+
+
+  const handleLogout=async(e)=>{
+    e.preventDefault()
+
+    try {
+    
+      const {data}= await axios.post(`${import.meta.env.VITE_API}/api/user/logout`)
+      console.log(data)
+      if(data){
+        AuthSet(null,"")
+        localStorage.removeItem("auth")
+        alert("User logged out  successfully")
+      }
+
+      navigate("/login")
+      
+      
+    } catch (error) {
+      console.log(error)
+      
+      
+      
+    }
+
+
+    
+    
+
+  }
+
+
+
   return (
     <div>
 
@@ -30,9 +70,19 @@ function Navbar() {
         </Link>
       </li>
       <li className="p-3 xl:p-6">
-        <Link to="/login">
+        {
+           !auth.token ? ( 
+          <Link  to="/login">
           <span>Login</span>
         </Link>
+        ):(
+          <Link onClick={handleLogout} to="">
+          <span>LogOut</span>
+        </Link>
+        )  
+        
+        }
+       
       </li>
       <li className="p-3 xl:p-6">
         <Link to="/signup">

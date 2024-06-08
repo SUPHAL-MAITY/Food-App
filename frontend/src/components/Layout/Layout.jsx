@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import Home from '../../Pages/Home';
 import { useEffect } from 'react';
 import useAuth from '../../context/Auth';
+import axios from 'axios';
 
 
 
@@ -13,7 +14,7 @@ function Layout() {
   const location = useLocation()
   const {auth,AuthSet}=useAuth()
 
-
+  axios.defaults.headers.common["Authorization"]=auth?.token
   useEffect(()=>{
     const data=localStorage.getItem("auth")
     if(data){

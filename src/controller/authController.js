@@ -154,7 +154,9 @@ return res.status(200).cookie("accessToken",accessToken,options).cookie("refresh
 
 const logOutController=asyncHandler(async(req,res)=>{
    await User.findByIdAndUpdate(req.user._id, {
-    $set:{refreshToken:undefined}
+    $set:{
+        refreshToken
+        :undefined}
 
    },{new:true}) 
 

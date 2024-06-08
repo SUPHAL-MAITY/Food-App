@@ -3,61 +3,57 @@ import { useState } from 'react'
 import axios from "axios"
 import { Link, useNavigate } from 'react-router-dom'
 import useAuth from '../context/Auth.jsx'
-import { useEffect } from 'react'
-
-const Login = () => {
-
-  const [userName,setUserName]=useState("")
-  const [email,setEmail]=useState("")
-  const [password,setPassword]=useState("")
-  const navigate=useNavigate()
-
-
-  const {auth,AuthSet}=useAuth()
 
 
 
-  const handleSubmit=async(e)=>{
-    e.preventDefault()
+
+const Logout = () => {
+
+    const [userName,setUserName]=useState("")
+    const [email,setEmail]=useState("")
+    const [password,setPassword]=useState("")
+    const navigate=useNavigate()
+
+    const {auth,AuthSet}=useAuth()
+
+
+
+    const handleSubmit=async(e)=>{
+      e.preventDefault()
+    
+    try {
+      
+      const {data}= await axios.post(`${import.meta.env.VITE_API}/api/user/logout`)
+      // console.log(data)
+      if(data){
+        alert("User logged in  successfully")
+      }
+      console.log("user")
+      console.log(data?.data.user.userName)
+      console.log(data.data.accessToken)
   
-  try {
-    
-    const {data}= await axios.post(`${import.meta.env.VITE_API}/api/user/login`,{userName,email,password})
-    // console.log(data)
-    if(data){
-      alert("User logged in  successfully")
+       AuthSet( data?.data.user.userName , data.data.accessToken)
+       localStorage.setItem("auth",JSON.stringify({"user":data?.data.user.userName,"token":data.data.accessToken}))
+      navigate("/details")
+      
+      
+    } catch (error) {
+      console.log(error)
+      
+      
+      
     }
-    console.log("user")
-    console.log(data?.data.user.userName)
-    console.log(data.data.accessToken)
+  
+    }
 
-     AuthSet( data?.data?.user.userName , data?.data?.accessToken)
-     localStorage.setItem("auth",JSON.stringify({"user":data?.data.user.userName,"token":data.data.accessToken}))
-    navigate("/details")
-    
-    
-  } catch (error) {
-    console.log(error)
-    
-    
-    
-  }
-
-  }
-
-  // useEffect(() => {
-  //   console.log("Updated auth state:", auth);
-  // }, [auth]);
 
 
   return (
-   
-    
-<div>
+   <div>
   <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
       
-      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Login to your account</h2>
+      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Logout  your account</h2>
 
 <div>
 
@@ -118,9 +114,7 @@ const Login = () => {
   </div>
 </div>
 
-
-
   )
 }
 
-export default Login
+export default Logout
