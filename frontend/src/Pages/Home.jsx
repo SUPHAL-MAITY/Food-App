@@ -4,17 +4,24 @@ import SearchInput from '../components/Layout/SearchInput.jsx'
 import CategoryCard from '../components/Layout/CategoryCard.jsx'
 import axios from 'axios'
 import { useState } from 'react'
+import useAuth from '../context/Auth.jsx'
 
 
 function Home() {
 
   const [categories,setCategories]=useState([])
+  const {auth,AuthSet}=useAuth()
 
 
  useEffect(()=>{
   getCategories()
 
  },[setCategories])
+
+
+
+
+
 
 const getCategories=async()=>{
   try {
@@ -40,6 +47,7 @@ const getCategories=async()=>{
 
 
    <h1 className='font-serif text-7xl font-semibold text-white pb-8'>Foodie bar</h1>
+    <h1>hello :{auth.user}</h1>    
    <h2 className='font-serif text-3xl font-semibold text-white pb-8'>Discover the best food & drinks in Kolkata</h2>
    <SearchInput />
     

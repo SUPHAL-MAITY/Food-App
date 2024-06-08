@@ -3,6 +3,7 @@ import { useState } from 'react'
 import axios from "axios"
 import { Link, useNavigate } from 'react-router-dom'
 import useAuth from '../context/Auth.jsx'
+import { useEffect } from 'react'
 
 const Login = () => {
 
@@ -22,7 +23,7 @@ const Login = () => {
   try {
     
     const {data}= await axios.post(`${import.meta.env.VITE_API}/api/user/login`,{userName,email,password})
-    console.log(data)
+    // console.log(data)
     if(data){
       alert("User logged in  successfully")
     }
@@ -30,8 +31,8 @@ const Login = () => {
     console.log(data?.data.user.userName)
     console.log(data.data.accessToken)
 
-    AuthSet( data?.data.user.userName,data.data.accessToken)
-    console.log(auth)
+     AuthSet( data?.data.user.userName , data.data.accessToken)
+     localStorage.setItem("auth",JSON.stringify({"user":data?.data.user.userName,"token":data.data.accessToken}))
     navigate("/details")
     
     
@@ -44,7 +45,9 @@ const Login = () => {
 
   }
 
-
+  // useEffect(() => {
+  //   console.log("Updated auth state:", auth);
+  // }, [auth]);
 
 
   return (

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
+import { useEffect } from "react"
 
 import {
   createBrowserRouter,
@@ -18,20 +19,34 @@ import Login from './Pages/Login.jsx';
 import Signup from "./Pages/Signup.jsx"
 import Layout from './components/Layout/Layout.jsx';
 import ForgotPwd from './Pages/ForgotPwd.jsx';
-import { AuthProvider } from './context/Auth.jsx';
+
 import UserDetails from './Pages/UserDetails.jsx';
 import AddRestro from './components/Layout/AddRestro.jsx';
 import PageNotFound from './components/Layout/PageNotFound.jsx';
+import { AuthProvider } from './context/Auth.jsx';
+
 
 
 function App() {
 
   const [auth,setAuth]=useState({user:null,token:""})
 
-  const AuthSet=(user,token)=>{
-    setAuth({user,token})
+ 
 
-  }
+  const AuthSet =(user, token) => {
+    setAuth({
+      ...auth,
+      user: user,
+      token: token,
+    });
+  };
+
+  
+
+
+
+
+
 
   const router=createBrowserRouter(
     createRoutesFromElements(
@@ -62,19 +77,19 @@ function App() {
   return (
     <>
 
-    
+
 <AuthProvider value={{auth,AuthSet}} >
    
-      <RouterProvider router={router} >
+<RouterProvider router={router} >   
         
-      
+    
       
 
-      </RouterProvider>
+</RouterProvider>  
     
   </AuthProvider>
 
-    
+  
     
      
     </>

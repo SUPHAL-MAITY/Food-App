@@ -23,3 +23,12 @@ export const AuthProvider=AuthContext.Provider
 export default function useAuth(){
     return useContext(AuthContext)
 }
+
+
+
+
+
+
+
+
+
