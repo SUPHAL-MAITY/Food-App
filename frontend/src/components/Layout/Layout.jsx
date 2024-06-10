@@ -15,6 +15,7 @@ function Layout() {
   const {auth,AuthSet}=useAuth()
 
   axios.defaults.headers.common["Authorization"]=auth?.token
+  
   useEffect(()=>{
     const data=localStorage.getItem("auth")
     if(data){

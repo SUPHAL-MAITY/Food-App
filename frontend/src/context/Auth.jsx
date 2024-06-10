@@ -1,5 +1,5 @@
 import {createContext,useContext} from "react"
-import { useEffect } from "react"
+
 
 
 export const AuthContext=createContext(
@@ -13,7 +13,7 @@ export const AuthContext=createContext(
    } 
 )
 
-
+ 
 
 
 

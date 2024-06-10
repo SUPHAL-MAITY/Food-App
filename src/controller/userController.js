@@ -37,15 +37,15 @@ const updateUserController=asyncHandler(async(req,res)=>{
     ///validate
     ///findByIdAndUpdate  (use middleware to get the req.user)
     ///send res
-    const {userName,address,usertype}=req.body
+    const {userName,address,usertype,phone}=req.body
     
 
-    if([userName,address,usertype].some((value)=>value.trim()==="")){
+    if([userName,address,usertype,phone].some((value)=>value.trim()==="")){
         throw new ApiError(400,"All fields are necessary for updating the user")
     }
 
     const user=await User.findByIdAndUpdate(req.user?._id,{
-        $set:{userName,address,usertype}
+        $set:{userName,address,usertype,phone}
     },{new:true}).select("-password -refreshToken")
 
 

@@ -7,7 +7,7 @@ const router=Router()
 
 router.route("/getuser").get(verifyJWT,getUserController)
 router.route("/update").put(verifyJWT,updateUserController)
-router.route("/passwordupdate").put(updatePasswordController)
+router.route("/passwordupdate").put(verifyJWT,updatePasswordController)
 router.route("/forgotpassword").put(forgotPasswordController)
 router.route("/delete/:id").delete(deleteProfileController)
 

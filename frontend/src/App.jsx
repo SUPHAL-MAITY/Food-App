@@ -24,7 +24,9 @@ import UserDetails from './Pages/UserDetails.jsx';
 import AddRestro from './components/Layout/AddRestro.jsx';
 import PageNotFound from './components/Layout/PageNotFound.jsx';
 import { AuthProvider } from './context/Auth.jsx';
-import Logout from './Pages/Logout.jsx';
+import UpdateUser from './Pages/UpdateUser.jsx';
+import UpdatePassword from './Pages/UpdatePassword.jsx';
+
 
 
 
@@ -54,11 +56,12 @@ function App() {
       <>
       <Route path='/'  element={<Layout/>} >
              <Route path='login'  element={<Login/>} />
-             <Route path='logout'  element={<Logout />} />
              <Route path='home'  element={<Home/>} />
              <Route path='signup'  element={<Signup />} />
              <Route path='forgot-password'  element={<ForgotPwd />} />
              <Route path='details'  element={<UserDetails />} />
+             <Route path='update-profile'  element={<UpdateUser />} />
+             <Route path='update-password'  element={<UpdatePassword />} />
              <Route path='add-restaurant'  element={<AddRestro />} />
              <Route path='*' element={<PageNotFound/>}/>
 
