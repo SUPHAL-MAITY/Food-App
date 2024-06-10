@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 
-import useAuth from '../context/Auth'
+import useAuth from '../context/Auth.jsx'
 
 const UserDetails = () => {
 
@@ -15,6 +15,8 @@ const UserDetails = () => {
   const [phone,setPhone]=useState("")
   const [usertype,setUsertype]=useState("")
   const [id,setId]=useState("")
+
+  const {auth,AuthSet}=useAuth()
 
   const navigate=useNavigate()
 
@@ -64,6 +66,7 @@ const handleDelete=async(id)=>{
       alert("User deleted  successfully")
     }
     localStorage.removeItem("auth")
+    AuthSet("","")
     navigate("/login")
     
     
