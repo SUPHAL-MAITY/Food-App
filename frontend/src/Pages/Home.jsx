@@ -16,7 +16,7 @@ function Home() {
  useEffect(()=>{
   getCategories()
 
- },[setCategories])
+ },[])
 
 
 
@@ -47,7 +47,7 @@ const getCategories=async()=>{
 
 
    <h1 className='font-serif text-7xl font-semibold text-white pb-8'>Foodie bar</h1>
-    <h1>hello :{auth.user}</h1>    
+      
    <h2 className='font-serif text-3xl font-semibold text-white pb-8'>Discover the best food & drinks in Kolkata</h2>
    <SearchInput />
     

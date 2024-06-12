@@ -36,6 +36,8 @@ function Layout() {
     <Navbar/>
 
     { location.pathname=="/" ?<Home/>:  <Outlet/>}
+
+   
     
     <Footer/>
       

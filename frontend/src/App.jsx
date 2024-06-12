@@ -8,6 +8,7 @@ import {
   Route,
   createRoutesFromElements,
  
+ 
   
 } from "react-router-dom";
 
@@ -26,6 +27,13 @@ import PageNotFound from './components/Layout/PageNotFound.jsx';
 import { AuthProvider } from './context/Auth.jsx';
 import UpdateUser from './Pages/UpdateUser.jsx';
 import UpdatePassword from './Pages/UpdatePassword.jsx';
+import Admin from './components/Layout/Routes/Admin.jsx';
+import DashboardCreate from './components/Layout/DashboardCreate.jsx';
+import DashboardUpdate from './components/Layout/DashboardUpdate.jsx';
+import AdminDashboard from './components/Layout/AdminDashboard.jsx';
+
+import DashboardCategories from './components/Layout/DashboardCategories.jsx';
+
 
 
 
@@ -54,8 +62,10 @@ function App() {
   const router=createBrowserRouter(
     createRoutesFromElements(
       <>
+     
       <Route path='/'  element={<Layout/>} >
              <Route path='login'  element={<Login/>} />
+
              <Route path='home'  element={<Home/>} />
              <Route path='signup'  element={<Signup />} />
              <Route path='forgot-password'  element={<ForgotPwd />} />
@@ -66,10 +76,25 @@ function App() {
              <Route path='*' element={<PageNotFound/>}/>
 
 
+
+             <Route path='admin' element={<Admin/>}>
+                    <Route path='/admin/dashboard'  element={<AdminDashboard/>} />
+                    <Route path='/admin/dashboard/create-categories'  element={<DashboardCreate/>} />
+                    <Route path='/admin/dashboard/update-categories'  element={<DashboardUpdate />} />
+                    <Route path='/admin/dashboard/categories'  element={<DashboardCategories />} />
+             </Route>
+
+             
+            
+
+
       </Route>
 
-
       
+
+
+
+    
 
    </>
 

@@ -49,3 +49,24 @@ export const verifyJWT=asyncHandler(async(req,res,next)=>{
 
 
 
+
+export const isAdmin=asyncHandler(async(req,res,next)=>{
+
+  try {
+
+    const user=await User.findById(req.user._id)
+    if(!user){
+      throw new ApiError(400,"User not found while trying to  check the admin")
+    }
+    if(user.role!==1){
+      throw new ApiError(400,"Not an authorised admin ")
+    }else{
+      next()
+    }
+    
+  } catch (error) {
+    console.log(error)
+    
+  }
+
+})

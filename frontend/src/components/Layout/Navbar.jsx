@@ -105,6 +105,7 @@ function Navbar() {
           <span>Home</span>
         </Link>
       </li>
+      
       <li>
       <Dropdown   label="Dropdown  button"  renderTrigger={() => <span>
          {auth?.user &&
@@ -118,6 +119,7 @@ function Navbar() {
             <Dropdown.Item as={Link} to="/details">Profile</Dropdown.Item>
             <Dropdown.Item as={Link} to="/update-profile">Update Profile</Dropdown.Item>
             <Dropdown.Item as={Link} to="/update-password">Update Password</Dropdown.Item>
+            <Dropdown.Item as={Link} to="/admin/dashboard">Admin Dashboard</Dropdown.Item>
             
            
              
