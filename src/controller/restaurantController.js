@@ -66,6 +66,27 @@ const getSingleRestaurantController=asyncHandler(async(req,res)=>{
 })
 
 
+const getRestaurantByUser=asyncHandler(async(req,res)=>{
+    const {_id}=req.user
+    if(!_id){
+        throw new ApiError(400,"Id is not found from the middleware for finding restaurant by user")
+    }
+    
+    console.log(_id)
+
+    const restaurants=await Restaurant.find({owner:_id})
+
+    if(!restaurants){
+        throw new ApiError(400,"Restaurant is not found from the owner ")
+    }
+
+    return res.status(200).json( new ApiResponse(200,{restaurants,count:restaurants.length}," restaurants data is obtained"))
+
+
+})
+
+
+
 const deleteRestaurantController=asyncHandler(async(req,res)=>{
     const {id}=req.params
     if(!id){
@@ -78,4 +99,4 @@ const deleteRestaurantController=asyncHandler(async(req,res)=>{
 })
 
 
-export {createRestaurantController,getAllRestaurants,getSingleRestaurantController,deleteRestaurantController}
+export {createRestaurantController,getAllRestaurants,getSingleRestaurantController,deleteRestaurantController,getRestaurantByUser}

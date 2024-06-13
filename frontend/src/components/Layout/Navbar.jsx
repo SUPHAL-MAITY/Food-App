@@ -120,6 +120,7 @@ function Navbar() {
             <Dropdown.Item as={Link} to="/update-profile">Update Profile</Dropdown.Item>
             <Dropdown.Item as={Link} to="/update-password">Update Password</Dropdown.Item>
             <Dropdown.Item as={Link} to="/admin/dashboard">Admin Dashboard</Dropdown.Item>
+            <Dropdown.Item as={Link} to="/restaurant">Restaurant</Dropdown.Item>
             
            
              

@@ -33,6 +33,7 @@ import DashboardUpdate from './components/Layout/DashboardUpdate.jsx';
 import AdminDashboard from './components/Layout/AdminDashboard.jsx';
 
 import DashboardCategories from './components/Layout/DashboardCategories.jsx';
+import Restaurant from './Pages/Restaurant.jsx';
 
 
 
@@ -73,6 +74,8 @@ function App() {
              <Route path='update-profile'  element={<UpdateUser />} />
              <Route path='update-password'  element={<UpdatePassword />} />
              <Route path='add-restaurant'  element={<AddRestro />} />
+             <Route path='restaurant'  element={<Restaurant />} />
+             
              <Route path='*' element={<PageNotFound/>}/>
 
 
