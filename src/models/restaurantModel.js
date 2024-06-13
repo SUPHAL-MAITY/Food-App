@@ -39,11 +39,15 @@ const restaurantSchema=new Schema({
       code: {
         type: String,
       },
-      coords: {
-        id: { type: String },
-        address: { type: String },
-        title: { type: String },
+      location: {
+        type:String,
+        required: [true, " Resturant location is required"],
       },
+      owner:{
+        type: Schema.Types.ObjectId,
+        ref: "User",
+
+      }
 
 
 },{timestamps:true})

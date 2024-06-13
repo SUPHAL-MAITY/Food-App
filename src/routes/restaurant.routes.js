@@ -1,4 +1,5 @@
 import { Router } from "express";
+import {  verifyJWT } from "../middlewares/auth.middleware.js";
 
 
 
@@ -9,10 +10,10 @@ import { createRestaurantController, deleteRestaurantController, getAllRestauran
 
 
 
-router.route("/create").post(createRestaurantController)
+router.route("/create").post(verifyJWT ,createRestaurantController)
 router.route("/getall").get(getAllRestaurants)
-router.route("/getsingle/:id").get(getSingleRestaurantController)
-router.route("/delete/:id").delete(deleteRestaurantController)
+router.route("/getsingle/:id").get(verifyJWT ,getSingleRestaurantController)
+router.route("/delete/:id").delete(verifyJWT ,deleteRestaurantController)
 
 
 

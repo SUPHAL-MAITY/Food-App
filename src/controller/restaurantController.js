@@ -8,14 +8,14 @@ import { ApiError } from "../utils/ApiError.js";
 
 
 const createRestaurantController=asyncHandler(async(req,res)=>{
-    const {title,imageUrl,foods,pickup,delivery,isOpen,logoUrl,rating,ratingCount,coords}=req.body
+    const {title,imageUrl,foods,pickup,delivery,isOpen,logoUrl,rating,ratingCount,location}=req.body
 
-    if(!title || !coords){
+    if(!title || !location){
         throw new ApiError(400,"please provide title and address")
     }
 
     const newRestaurant=new Restaurant({
-        title,imageUrl,foods,pickup,delivery,isOpen,logoUrl,rating,ratingCount,coords
+        title,imageUrl,foods,pickup,delivery,isOpen,logoUrl,rating,ratingCount,location,owner:req.user._id
     })
     
     await newRestaurant.save()
