@@ -109,7 +109,7 @@ function Navbar() {
       <li>
       <Dropdown   label="Dropdown  button"  renderTrigger={() => <span>
          {auth?.user &&
-          <div  className="m-3 relative inline-flex items-center justify-center w-8 h-8 overflow-hidden bg-slate-300 rounded-full dark:bg-gray-600">
+          <div  className="m-3  relative inline-flex items-center justify-center w-8 h-8 overflow-hidden bg-slate-300 rounded-full dark:bg-gray-600">
           <span  className="font-medium text-gray-600 dark:text-gray-300">{auth?.user?.charAt(0).toUpperCase()}</span>
         </div>
 

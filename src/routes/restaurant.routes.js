@@ -6,7 +6,7 @@ import {  verifyJWT } from "../middlewares/auth.middleware.js";
 const router=Router()
 
 
-import { createRestaurantController, deleteRestaurantController, getAllRestaurants, getRestaurantByUser, getSingleRestaurantController } from "../controller/restaurantController.js"; 
+import { createRestaurantController, deleteRestaurantController, getAllRestaurants, getRestaurantByUser, getSingleRestaurantController, updateRestaurant } from "../controller/restaurantController.js"; 
 
 
 
@@ -16,6 +16,7 @@ router.route("/getresbyowner").get(verifyJWT ,getRestaurantByUser)
 router.route("/getall").get(getAllRestaurants)
 router.route("/getsingle/:id").get(verifyJWT ,getSingleRestaurantController)
 router.route("/delete/:id").delete(verifyJWT ,deleteRestaurantController)
+router.route("/update/:id").put(updateRestaurant)
 
 
 

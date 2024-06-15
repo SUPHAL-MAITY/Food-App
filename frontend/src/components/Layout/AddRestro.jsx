@@ -19,13 +19,13 @@ const AddRestro = () => {
 
     const handleSubmit=async(e)=>{
         e.preventDefault()
-        console.log(foodInput)
+        
         const foodItem=foodInput.split(",").map((item)=>item.trim()).filter(item=>item)
-        console.log(foodItem)
+       
         setFoods(foodItem)
 
         try {
-          console.log("foods:",foods)
+          
 
             const res= await axios.post(`${import.meta.env.VITE_API}/api/restaurant/create`,{title,imageUrl,foods,pickup,delivery,isOpen,logoUrl,location})
             if(res){
