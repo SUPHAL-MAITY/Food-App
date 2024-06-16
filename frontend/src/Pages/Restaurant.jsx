@@ -29,14 +29,7 @@ const Restaurant = () => {
             console.log(data)
             setRestaurants(data?.data?.restaurants)
             setCount(data.data.count)
-            // setTitle(data?.data?.restaurants.title)
-            // setImageUrl(data?.data?.restaurants.imageUrl)
-            // // setFoodInput(data.data.foods.join(","))
-            // setLogoUrl(data?.data?.restaurants.logoUrl)
-            // setLocation(data?.data?.restaurants.location)
-            // setPickup(data?.data?.restaurants.pickup)
-            // setDelivery(data?.data?.restaurants.delivery)
-            // setIsOpen(data?.data?.restaurants.isOpen)
+            
             
         } catch (error) {
           console.log(error)
@@ -109,6 +102,21 @@ const Restaurant = () => {
 
 }
 
+const handleDelete=async(id)=>{
+  
+  try {
+    const {data}=await axios.delete(`${import.meta.env.VITE_API}/api/restaurant/delete/${id}`)
+    if(data){
+      alert("Restaurant deleted successfully")
+    }
+    
+  } catch (error) {
+    console.log(error)
+  }
+  
+  
+}
+
 
   return (
 <>
@@ -165,11 +173,18 @@ const Restaurant = () => {
         <div className="text-center my-3">
         
           <button
-              className="bg-cyan-200 font-serif text-black active:bg-blue-500 font-bold px-2 py-1  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+              className="bg-cyan-400 font-serif text-black active:bg-blue-500 font-bold px-2 py-1  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
               type="button"
               onClick={() => handleClick(c._id)}
          >
            Update  
+      </button>
+          <button
+              className="bg-red-500 font-serif text-black active:bg-blue-500 font-bold px-2 py-1  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+              type="button"
+              onClick={() => handleDelete(c._id)}
+         >
+           Delete
       </button>
 
 

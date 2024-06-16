@@ -15,7 +15,7 @@ router.route("/getresbyowner").get(verifyJWT ,getRestaurantByUser)
 
 router.route("/getall").get(getAllRestaurants)
 router.route("/getsingle/:id").get(verifyJWT ,getSingleRestaurantController)
-router.route("/delete/:id").delete(verifyJWT ,deleteRestaurantController)
+router.route("/delete/:id").delete(deleteRestaurantController)
 router.route("/update/:id").put(updateRestaurant)
 
 
