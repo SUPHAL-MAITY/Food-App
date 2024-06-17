@@ -8,7 +8,7 @@ const Restaurant = () => {
 
      const [title,setTitle]=useState("")
      const [imageUrl,setImageUrl]=useState("")
-     const [foods,setFoods]=useState([])
+     
      const [foodInput,setFoodInput]=useState("")
      const [pickup,setPickup]=useState("")
      const [delivery,setDelivery]=useState("")
@@ -20,7 +20,11 @@ const Restaurant = () => {
    useEffect(()=>{
     getRestaurants()
 
-   },[restaurants])
+   },[])
+
+   
+
+   
 
     const getRestaurants=async()=>{
         try {
@@ -67,9 +71,10 @@ const Restaurant = () => {
     console.log("submission started")
     e.preventDefault()
     
-    const foodItem=foodInput.split(",").map((item)=>item.trim()).filter(item=>item)
+    const foods=foodInput.split(",").map((item)=>item.trim()).filter(item=>item)
+    // console.log("foodItem",foodItem)
     
-    setFoods(foodItem)
+    // setFoods(foodItem)
 
     try {
       
@@ -86,6 +91,7 @@ const Restaurant = () => {
           // setIsOpen("")
           // setLogoUrl("")
           // setLocation("")
+          getRestaurants()
 
           setShowModal(false)
 
@@ -134,7 +140,7 @@ const handleDelete=async(id)=>{
   <div className="max-w-xs">
     <div className="bg-white shadow-xl rounded-lg py-3">
       <div className="photo-wrapper p-2">
-        <img className="w-32 h-32 rounded-full mx-auto" src={c.logoUrl} alt="John Doe" />
+        <img className="w-32 h-32 rounded-full mx-auto" src={c.logoUrl} alt="Logo URL" />
       </div>
       <div className="p-2">
         <h3 className="text-center text-xl text-gray-900 font-medium leading-8 font-serif">{c.title}</h3>
@@ -179,12 +185,19 @@ const handleDelete=async(id)=>{
          >
            Update  
       </button>
-          <button
+      <button
               className="bg-red-500 font-serif text-black active:bg-blue-500 font-bold px-2 py-1  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
               type="button"
               onClick={() => handleDelete(c._id)}
          >
            Delete
+      </button>
+      <button
+              className="bg-gray-500 font-serif text-black active:bg-blue-500 font-bold px-2 py-1  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+              type="button"
+              onClick={() => handleDelete(c._id)}
+         >
+          Menu
       </button>
 
 

@@ -24,7 +24,8 @@ const foodSchema=new Schema({
         type: String,
       },
       catgeory: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref:"Categories",
       },
       code: {
         type: String,
