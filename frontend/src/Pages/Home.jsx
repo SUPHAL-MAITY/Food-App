@@ -10,7 +10,7 @@ import useAuth from '../context/Auth.jsx'
 function Home() {
 
   const [categories,setCategories]=useState([])
-  const {auth,AuthSet}=useAuth()
+ 
 
 
  useEffect(()=>{
@@ -56,7 +56,7 @@ const getCategories=async()=>{
 
   </div>
 
-  <div className="grid grid-cols-4 gap-4">
+  <div className="grid grid-cols-4 gap-3">
     {
       categories.map((c)=>(
         <div key={c._id}><CategoryCard  id={c._id} title={c.title} imageUrl={c.imageUrl}   /></div>

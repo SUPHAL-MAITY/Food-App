@@ -9,13 +9,13 @@ import { Orders } from "../models/orderModel.js";
 
 
 const createFoodController=asyncHandler(async(req,res)=>{
-   const {title,description,price,imageUrl,foodTags,catgeory,code,isAvailabe,restaurant,rating,ratingCount}=req.body
+   const {title,description,price,imageUrl,foodTags,category,code,isAvailable,restaurant}=req.body
 
    if(!title || !description || !price || !restaurant){
     throw new ApiError(400,"title,description , price and restaurant  are necessary for creating food model")
    }
 
- const newFood= new Foods({title,description,price,imageUrl,foodTags,catgeory,code,isAvailabe,restaurant,rating,ratingCount})
+ const newFood= new Foods({title,description,price,imageUrl,foodTags,category,code,isAvailable,restaurant})
 
 
   await  newFood.save()
@@ -75,11 +75,32 @@ const getFoodsByRestaurant=asyncHandler(async(req,res)=>{
 
 })
 
+
+const getFoodsByCategory=asyncHandler(async(req,res)=>{
+
+    const {id}=req.params
+     
+    if(!id){
+        throw new ApiError(400,"Id is not found while trying to get foods by category ")
+    }
+
+    const foods=await Foods.find({category:id})
+   
+
+    if(!foods){
+        throw new ApiError(400,"Food  is not found while trying to get foods by category ")
+    }
+
+    return res.status(200).json(new ApiResponse(200,{foods,count:foods.length},"Food is obtianed from category"))
+
+})
+
+
 const updateFoodController=asyncHandler(async(req,res)=>{
     const {foodId}=req.params
-    const {title,description,price,imageUrl,foodTags,catgeory,code,isAvailabe,restaurant,rating,ratingCount}=req.body
+    const {title,description,price,imageUrl,foodTags,category,code,isAvailabe,restaurant,rating,ratingCount}=req.body
 
-    await Foods.findByIdAndUpdate(foodId,{title,description,price,imageUrl,foodTags,catgeory,code,isAvailabe,restaurant,rating,ratingCount},{new:true})
+    await Foods.findByIdAndUpdate(foodId,{title,description,price,imageUrl,foodTags,category,code,isAvailabe,restaurant,rating,ratingCount},{new:true})
     
 
     return res.status(200).json(new ApiResponse(200,{},"Foods are updated successfully"))
@@ -165,7 +186,7 @@ const changeOrderStatus=asyncHandler(async(req,res)=>{
 
 
 
-export {createFoodController,getAllFoodController,getSingleFoodController,getFoodsByRestaurant,updateFoodController,deleteFoodController,foodOrderController,changeOrderStatus}
+export {getFoodsByCategory,createFoodController,getAllFoodController,getSingleFoodController,getFoodsByRestaurant,updateFoodController,deleteFoodController,foodOrderController,changeOrderStatus}
 
 
 

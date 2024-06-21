@@ -34,6 +34,11 @@ import AdminDashboard from './components/Layout/AdminDashboard.jsx';
 
 import DashboardCategories from './components/Layout/DashboardCategories.jsx';
 import Restaurant from './Pages/Restaurant.jsx';
+import FoodMenu from './Pages/FoodMenu.jsx';
+import CreateFoods from './Pages/CreateFoods.jsx';
+import FoodPage from './Pages/FoodPage.jsx';
+
+
 
 
 
@@ -66,6 +71,7 @@ function App() {
      
       <Route path='/'  element={<Layout/>} >
              <Route path='login'  element={<Login/>} />
+           
 
              <Route path='home'  element={<Home/>} />
              <Route path='signup'  element={<Signup />} />
@@ -75,6 +81,11 @@ function App() {
              <Route path='update-password'  element={<UpdatePassword />} />
              <Route path='add-restaurant'  element={<AddRestro />} />
              <Route path='restaurant'  element={<Restaurant />} />
+             <Route path='restaurant/:id'  element={<FoodMenu />} />
+             <Route path='restaurant/createfood'  element={<CreateFoods />} />
+             <Route path='foods/:id'  element={<FoodPage/>} />
+             
+
              
              <Route path='*' element={<PageNotFound/>}/>
 

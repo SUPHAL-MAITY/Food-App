@@ -23,14 +23,14 @@ const foodSchema=new Schema({
       foodTags: {
         type: String,
       },
-      catgeory: {
+      category: {
         type: Schema.Types.ObjectId,
         ref:"Categories",
       },
       code: {
         type: String,
       },
-      isAvailabe: {
+      isAvailable: {
         type: Boolean,
         default: true,
       },
@@ -45,7 +45,9 @@ const foodSchema=new Schema({
         max: 5,
       },
       ratingCount: {
-        type: String,
+        type: Number,
+        default: 0,
+
       },
 
 },{timestamps:true})

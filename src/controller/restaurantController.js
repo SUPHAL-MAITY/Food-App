@@ -8,6 +8,7 @@ import { ApiError } from "../utils/ApiError.js";
 
 
 const createRestaurantController=asyncHandler(async(req,res)=>{
+
     const {title,imageUrl,foods,pickup,delivery,isOpen,logoUrl,rating,ratingCount,location}=req.body
 
     if(!title || !location){
@@ -53,6 +54,7 @@ const getSingleRestaurantController=asyncHandler(async(req,res)=>{
     }
 
     const restaurant=await Restaurant.findById({_id:id})
+    
     if(!restaurant){
         throw new ApiError(400,"Restaurant not found from the id")
 

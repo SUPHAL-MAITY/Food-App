@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 const Restaurant = () => {
      const [showModal, setShowModal] = useState(false);
@@ -16,6 +17,8 @@ const Restaurant = () => {
      const [logoUrl,setLogoUrl]=useState("")
      const [location,setLocation]=useState("")
      const [id,setId]=useState("")
+
+     const navigate=useNavigate()
 
    useEffect(()=>{
     getRestaurants()
@@ -123,6 +126,19 @@ const handleDelete=async(id)=>{
   
 }
 
+const handleMenu=(id)=>{
+ navigate(`/restaurant/${id}`)
+
+
+}
+
+
+const createFoods=(id)=>{
+ 
+  console.log("create Foods")
+  navigate("/restaurant/createfood", { state: { id} })
+
+}
 
   return (
 <>
@@ -193,9 +209,19 @@ const handleDelete=async(id)=>{
            Delete
       </button>
       <button
+              className="bg-green-400 font-serif text-black active:bg-blue-500 font-bold px-2 py-1  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+              type="button"
+              onClick={(event) => {
+                event.preventDefault(); 
+                createFoods(c._id);
+            }}
+         >
+          Food
+      </button>
+      <button
               className="bg-gray-500 font-serif text-black active:bg-blue-500 font-bold px-2 py-1  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
               type="button"
-              onClick={() => handleDelete(c._id)}
+              onClick={() => handleMenu(c._id)}
          >
           Menu
       </button>
