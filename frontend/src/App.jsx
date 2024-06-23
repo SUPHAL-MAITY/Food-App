@@ -37,6 +37,8 @@ import Restaurant from './Pages/Restaurant.jsx';
 import FoodMenu from './Pages/FoodMenu.jsx';
 import CreateFoods from './Pages/CreateFoods.jsx';
 import FoodPage from './Pages/FoodPage.jsx';
+import CartPage from './Pages/CartPage.jsx';
+import { CartProvider } from './context/CartContext.jsx';
 
 
 
@@ -47,8 +49,15 @@ import FoodPage from './Pages/FoodPage.jsx';
 function App() {
 
   const [auth,setAuth]=useState({user:null,token:""})
+  const [cart,setCart]=useState([])
 
  
+ 
+  const updateCart=(id,title,description,price,imageUrl)=>{
+    const newItem={id,title,description,price,imageUrl}
+    setCart(prev=>[...prev,newItem])
+
+  }
 
   const AuthSet =(user, token) => {
     setAuth({
@@ -60,7 +69,7 @@ function App() {
 
   
 
-
+ 
 
 
 
@@ -84,6 +93,7 @@ function App() {
              <Route path='restaurant/:id'  element={<FoodMenu />} />
              <Route path='restaurant/createfood'  element={<CreateFoods />} />
              <Route path='foods/:id'  element={<FoodPage/>} />
+             <Route path='cart'  element={<CartPage/>} />
              
 
              
@@ -121,19 +131,16 @@ function App() {
   return (
     <>
 
-
+<CartProvider  value={{cart,updateCart}} >
 <AuthProvider value={{auth,AuthSet}} >
    
 <RouterProvider router={router} >   
         
-    
-      
-
 </RouterProvider>  
     
-  </AuthProvider>
+</AuthProvider>
 
-  
+</CartProvider> 
     
      
     </>

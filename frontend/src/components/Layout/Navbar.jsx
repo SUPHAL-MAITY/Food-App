@@ -105,7 +105,7 @@ function Navbar() {
           <span>Home</span>
         </Link>
       </li>
-      
+      <li className="font-serif p-3 xl:p-6"> <Link to="/cart" className="navbar-brand" >🛒 </Link ></li>
       <li>
       <Dropdown   label="Dropdown  button"  renderTrigger={() => <span>
          {auth?.user &&
@@ -143,6 +143,7 @@ function Navbar() {
       
       
     </ul>
+    
 
       </div>
       

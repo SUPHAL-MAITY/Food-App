@@ -4,12 +4,15 @@ import SearchInput from '../components/Layout/SearchInput.jsx'
 import CategoryCard from '../components/Layout/CategoryCard.jsx'
 import axios from 'axios'
 import { useState } from 'react'
-import useAuth from '../context/Auth.jsx'
+
+
 
 
 function Home() {
 
   const [categories,setCategories]=useState([])
+
+  
  
 
 

@@ -10,9 +10,12 @@ import axios from 'axios';
 
 
 
+
 function Layout() {
+
   const location = useLocation()
   const {auth,AuthSet}=useAuth()
+
 
   axios.defaults.headers.common["Authorization"]=auth?.token
   
@@ -24,11 +27,10 @@ function Layout() {
       AuthSet(parsedData.user, parsedData.token)
     }
   },[])
-  
-  // useEffect(() => {
-  //   console.log("Auth taken from localstorage:", auth);
-  // }, [auth]);
 
+  
+  
+  
 
 
   return (

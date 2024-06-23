@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import useCart from "../context/CartContext";
+import { Button } from "flowbite-react";
+
+
 
 const FoodPage = () => {
   const { id } = useParams();
   const [foods, setFoods] = useState([]);
+
+  const{cart,updateCart}=useCart()
 
   useEffect(() => {
     getFoodsByCategory();
@@ -23,13 +29,26 @@ const FoodPage = () => {
     }
   };
 
+
+
+  const addToCart=(id,title,description,price,imageUrl)=>{
+    console.log("Added to cart")
+    console.log(id)
+    console.log(title)
+    console.log(description)
+    console.log(price)
+    console.log(imageUrl)
+    updateCart(id,title,description,price,imageUrl)
+  }
+
   return (
-    <div>
-      {foods.map((c, i) => (
-        <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className=" "> 
+    <div className="grid grid-cols-4 gap-3">
+      {foods?.map((c, i) => (
+        <div key={i} className="w-full border-8 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <Link to="#">
             <img
-              className="p-8 rounded-t-lg"
+              className="p-8 w-64 and h-64 rounded-t-lg"
               src={c.imageUrl}
               alt="product image"
             />
@@ -40,7 +59,7 @@ const FoodPage = () => {
                 {c.title}
               </h5>
             </Link>
-            <span class="text-sm font-serif text-gray-500 dark:text-gray-400">{c.description}</span>
+            <span className="text-sm font-serif text-gray-500 dark:text-gray-400">{c.description}</span>
             <div className="flex items-center mt-2.5 mb-5">
               <div className="flex items-center space-x-1 rtl:space-x-reverse">
                 <svg
@@ -97,16 +116,17 @@ const FoodPage = () => {
               <span className="font-serif text-3xl font-bold text-gray-900 dark:text-white">
               ₹ {c.price}
               </span>
-              <Link
-                to="#"
-                className="text-white font-serif bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              <Button onClick={()=>addToCart(c._id,c.title,c.description,c.price,c.imageUrl)}
+                
+                className="text-white font-serif bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Add to cart
-              </Link>
+              </Button>
             </div>
           </div>
         </div>
       ))}
+    </div>
     </div>
   );
 };
