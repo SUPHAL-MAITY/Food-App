@@ -33,12 +33,14 @@ const FoodPage = () => {
 
   const addToCart=(id,title,description,price,imageUrl)=>{
     console.log("Added to cart")
-    console.log(id)
-    console.log(title)
-    console.log(description)
-    console.log(price)
-    console.log(imageUrl)
-    updateCart(id,title,description,price,imageUrl)
+    // console.log(id)
+    // console.log(title)
+    // console.log(description)
+    // console.log(price)
+    // console.log(imageUrl)
+    const newItem={id,title,description,price,imageUrl,quantity:1,total:price}
+    
+    updateCart(newItem)
   }
 
   return (

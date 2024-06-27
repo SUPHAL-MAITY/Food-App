@@ -52,10 +52,19 @@ function App() {
   const [cart,setCart]=useState([])
 
  
- 
-  const updateCart=(id,title,description,price,imageUrl)=>{
-    const newItem={id,title,description,price,imageUrl}
+  // const updateCart=(id,title,description,price,imageUrl)=>{
+  //   const newItem={id,title,description,price,imageUrl, quantity: 1}
+  //   setCart(prev=>[...prev,newItem])
+
+  // }
+  const updateCart=(newItem)=>{
+    
     setCart(prev=>[...prev,newItem])
+
+  }
+  const handleCart=(newItem)=>{
+    
+    setCart(newItem)
 
   }
 
@@ -131,7 +140,7 @@ function App() {
   return (
     <>
 
-<CartProvider  value={{cart,updateCart}} >
+<CartProvider  value={{cart,updateCart,handleCart}} >
 <AuthProvider value={{auth,AuthSet}} >
    
 <RouterProvider router={router} >   
