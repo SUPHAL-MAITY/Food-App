@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { changeOrderStatus, createFoodController, deleteFoodController, foodOrderController, getAllFoodController, getFoodsByCategory, getFoodsByRestaurant, getSingleFoodController, updateFoodController } from "../controller/foodController.js";
+import { changeOrderStatus, createFoodController, deleteFoodController, foodOrderController, getAllFoodController, getFoodsByCategory, getFoodsByRestaurant, getSingleFoodController, searchController, updateFoodController } from "../controller/foodController.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 
@@ -16,6 +16,8 @@ router.route("/delete/:id").delete(deleteFoodController)
 ////place order
 router.route("/order").post(verifyJWT,foodOrderController)
 router.route("/status/:orderId").put(changeOrderStatus)
+
+router.route("/search").get(searchController)
 
 
 

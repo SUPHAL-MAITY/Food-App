@@ -190,6 +190,25 @@ const changeOrderStatus=asyncHandler(async(req,res)=>{
 
 
 
+//////search  foods 
+
+const searchController=asyncHandler(async(req,res)=>{
+    const item=req.query.q;
+    if(!item){
+        throw new ApiError(400,"Items are not found in Search Bar")
+        
+    }
+
+    const foods=await Foods.find({  $or:[
+                                        {title:{$regex:item,$options:"i"}},
+                                        {description:{$regex:item,$options:"i"}},
+        
+    ] })
+
+    return res.status(200).json(new ApiResponse(200,{foods,length:foods.length},"Food items are obtained from search bar"))
+
+
+})
 
 
 
@@ -198,7 +217,10 @@ const changeOrderStatus=asyncHandler(async(req,res)=>{
 
 
 
-export {getFoodsByCategory,createFoodController,getAllFoodController,getSingleFoodController,getFoodsByRestaurant,updateFoodController,deleteFoodController,foodOrderController,changeOrderStatus}
+
+
+
+export {searchController,getFoodsByCategory,createFoodController,getAllFoodController,getSingleFoodController,getFoodsByRestaurant,updateFoodController,deleteFoodController,foodOrderController,changeOrderStatus}
 
 
 

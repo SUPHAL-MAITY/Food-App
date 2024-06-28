@@ -11,6 +11,7 @@ import { useState } from 'react'
 function Home() {
 
   const [categories,setCategories]=useState([])
+  const [result,setResult]=useState([])
 
   
  
@@ -39,6 +40,20 @@ const getCategories=async()=>{
 }
 
 
+
+const handleSearch=async(query)=>{
+  try {
+    const {data}= await axios.get(`${import.meta.env.VITE_API}/api/food/search?q=${query}`)
+    setResult(data?.data?.foods)
+    console.log(data)
+    
+  } catch (error) {
+    console.log(error)
+  }
+
+}
+
+
   return (
    
 <>
@@ -52,7 +67,7 @@ const getCategories=async()=>{
    <h1 className='font-serif text-7xl font-semibold text-white pb-8'>Foodie bar</h1>
       
    <h2 className='font-serif text-3xl font-semibold text-white pb-8'>Discover the best food & drinks in Kolkata</h2>
-   <SearchInput />
+   <SearchInput  onSearch={handleSearch}/>
     
    </div> 
    
