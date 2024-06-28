@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useCart from "../context/CartContext";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
 
@@ -7,6 +9,8 @@ const CartPage = () => {
 
   const [allTotal,setAllTotal]=useState(0)
   const{cart,updateCart,handleCart}=useCart()
+  const navigate=useNavigate()
+
   console.log(cart)
  
   
@@ -44,6 +48,29 @@ const CartPage = () => {
       item.id==id ? { ...item,quantity:item.quantity-1,total:(item.quantity-1)*item.price}:item
   ))
   handleCart(updatedCart)
+  }
+
+
+
+  const handlePayment=async(e)=>{
+    e.preventDefault()
+    console.log("Payment handled")
+
+    try {
+      const {data}=await axios.post(`${import.meta.env.VITE_API}/api/food/order`,{cart})
+    if(data){
+      alert("Order placed successfully")
+      navigate("/home")
+      window.location.reload();
+    }
+      
+    } catch (error) {
+      console.log(error)
+    }
+
+    
+
+
   }
 
   
@@ -129,8 +156,8 @@ const CartPage = () => {
             <path d="M8.25324 5.49609L13.7535 10.9963L8.25 16.4998"   strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
-        <button className="rounded-full w-full max-w-[280px] py-4 text-center justify-center items-center bg-indigo-600 font-semibold text-lg text-white flex transition-all duration-500 hover:bg-indigo-700">Continue
-          to Payment
+        <button onClick={handlePayment} className="rounded-full w-full max-w-[280px] py-4 text-center justify-center items-center bg-indigo-600 font-semibold text-lg text-white flex transition-all duration-500 hover:bg-indigo-700">Continue to payment
+    
           <svg className="ml-2" xmlns="http://www.w3.org/2000/svg" style={{ width: '10%', height: '10%' }} viewBox="0 0 23 22" fill="none">
             <path d="M8.75324 5.49609L14.2535 10.9963L8.75 16.4998"   strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
           </svg>

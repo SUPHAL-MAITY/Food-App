@@ -130,6 +130,7 @@ const deleteFoodController=asyncHandler(async(req,res)=>{
 const foodOrderController=asyncHandler(async(req,res)=>{
 
     ///in the cart of foods will store array of objects {_id,title,price,details}
+
     const {cart}=req.body
     if(!cart){
         throw new ApiError(400,"Cart is not found for placing order")
@@ -138,15 +139,24 @@ const foodOrderController=asyncHandler(async(req,res)=>{
     let total=0;
     cart.map((i)=>(
         
-        total+=i.price
+        total+=i.total
         
     ) )
 
-   const ids=cart.map((i)=>(
-    i._id
- ))
+    total = (total >0 && total< 500)? total + 75 : total;
+
+    console.log(total)
+
+//    const ids=cart.map((i)=>(
+//     i.id
+//  ))
+
+
+
+
+
    const newOrder=new Orders({
-     foods:ids,
+     foods:cart,
      payment:total,
      buyer:req.user._id
    } )
@@ -154,7 +164,7 @@ const foodOrderController=asyncHandler(async(req,res)=>{
 
    await newOrder.save()
 
-   return res.status(200).json(new ApiResponse(200,newOrder,"Prders are placed successfully"))
+   return res.status(200).json(new ApiResponse(200,newOrder,"Orders are placed successfully"))
    
 
 })
