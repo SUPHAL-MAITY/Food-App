@@ -39,6 +39,7 @@ import CreateFoods from './Pages/CreateFoods.jsx';
 import FoodPage from './Pages/FoodPage.jsx';
 import CartPage from './Pages/CartPage.jsx';
 import { CartProvider } from './context/CartContext.jsx';
+import SearchResult from './Pages/SearchResult.jsx';
 
 
 
@@ -103,6 +104,7 @@ function App() {
              <Route path='restaurant/createfood'  element={<CreateFoods />} />
              <Route path='foods/:id'  element={<FoodPage/>} />
              <Route path='cart'  element={<CartPage/>} />
+             <Route path='search'  element={<SearchResult/>} />
              
 
              
