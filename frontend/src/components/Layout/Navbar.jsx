@@ -99,8 +99,10 @@ function Navbar() {
                     </span>
                   )}
                   dismissOnClick={false}
+                
                 >
-                  <Dropdown.Item as={Link} to="/details">
+                  
+                  <Dropdown.Item  as={Link} to="/details">
                     Profile
                   </Dropdown.Item>
                   <Dropdown.Item as={Link} to="/update-profile">

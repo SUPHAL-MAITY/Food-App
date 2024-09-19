@@ -59,7 +59,7 @@ const getCategories=async()=>{
    
 <>
 
-  <div className="bg-center opacity-90 h-dvh bg-no-repeat bg-[url('https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png')] " >
+  <div className="bg-center opacity-100 h-dvh bg-no-repeat bg-[url('https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png')] " >
     
    
    <div className='text-center pt-48'>
