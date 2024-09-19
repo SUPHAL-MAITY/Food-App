@@ -39,7 +39,7 @@ const Login = () => {
 
      
      localStorage.setItem("auth",JSON.stringify({"user":data?.data.user.userName,"token":data.data.accessToken}))
-    navigate("/details")
+    navigate("/restaurant")
     
     
   } catch (error) {
