@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import cookieParser from "cookie-parser"
 
+
 const app = express()
 
 app.use(cors({
@@ -34,7 +35,6 @@ app.use("/api/restaurant",restaurantRouter)
 app.use("/api/food",foodRouter)
 app.use("/api/category",categoryRouter)
 
-// app.use("/api/v1",)
 
 
 export { app }

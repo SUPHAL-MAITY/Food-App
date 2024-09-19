@@ -5,6 +5,7 @@ import axios from "axios";
 import { Dropdown } from "flowbite-react";
 
 function Navbar() {
+
   const { auth, AuthSet } = useAuth();
   const navigate = useNavigate();
 
@@ -30,8 +31,8 @@ function Navbar() {
 
   return (
     <div>
-      <header className="h-16 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500  shadow-lg  hidden md:flex">
-        <nav className="header-links contents font-semibold text-base lg:text-lg">
+      <header className="h-16  bg-gradient-to-r from-green-400 to-blue-500 sticky absolute hover:from-pink-500 hover:to-yellow-500  shadow-lg  hidden md:flex">
+        <nav className="header-links  contents font-semibold text-base lg:text-lg">
           <ul className="flex items-center ml-4 xl:ml-8 mr-auto">
             <li className="font-serif p-3 xl:p-6 active">
               <Link to>

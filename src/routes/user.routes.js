@@ -11,4 +11,8 @@ router.route("/passwordupdate").put(verifyJWT,updatePasswordController)
 router.route("/forgotpassword").put(forgotPasswordController)
 router.route("/delete/:id").delete(deleteProfileController)
 
+
+
+
+
 export default router;

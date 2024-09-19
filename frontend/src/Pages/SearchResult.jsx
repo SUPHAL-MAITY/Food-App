@@ -6,6 +6,9 @@ import useCart from "../context/CartContext";
 import { Link } from "react-router-dom";
 import { Button } from "flowbite-react";
 
+
+
+
 const SearchResult = () => {
   const [searchPrams] = useSearchParams();
   const query = searchPrams.get("q");
@@ -184,5 +187,7 @@ const SearchResult = () => {
     </div>
   );
 };
+
+
 
 export default SearchResult;
