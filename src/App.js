@@ -7,7 +7,8 @@ const app = express()
 
 app.use(cors({
     // origin: process.env.CORS_ORIGIN,
-    origin: "https://food-app-ecru-five.vercel.app/",
+    origin: "'https://food-app-delta-ecru.vercel.app'",
+    
     credentials: true
 }))
 
