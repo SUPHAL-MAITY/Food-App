@@ -4,6 +4,13 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
 
+
+const testController=(req,res)=>{
+
+    return res.status(200).json(new ApiResponse(200,{key:"I am testing controller"},"particular user details obtained using id"))
+
+}
+
 const getUserController=asyncHandler(async(req,res)=>{
     ///find BY id
     /// validation
@@ -141,4 +148,4 @@ const deleteProfileController=asyncHandler(async(req,res)=>{
 
 })
 
-export {getUserController,updateUserController,updatePasswordController,forgotPasswordController,deleteProfileController}
+export {getUserController,updateUserController,updatePasswordController,forgotPasswordController,deleteProfileController,testController}
