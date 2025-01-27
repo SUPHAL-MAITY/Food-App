@@ -76,7 +76,7 @@ const getCategories=async()=>{
 
   </div>
 
-  <div className="grid grid-cols-4 gap-3">
+  <div className="grid grid-cols-1 sm:grid-cols-4 sm:gap-3 ">
     {
       categories?.map((c)=>(
         <div key={c._id}><CategoryCard  id={c._id} title={c.title} imageUrl={c.imageUrl}   /></div>

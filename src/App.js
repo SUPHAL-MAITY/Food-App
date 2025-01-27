@@ -12,8 +12,15 @@ const app = express()
 
 ////production
 
+// app.use(cors({
+//     origin: 'https://food-app-delta-ecru.vercel.app', // The frontend URL
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//     credentials: true
+// }));
+
+///dev mode
 app.use(cors({
-    origin: 'https://food-app-delta-ecru.vercel.app', // The frontend URL
+    origin: 'http://localhost:5173', // The frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true
 }));
